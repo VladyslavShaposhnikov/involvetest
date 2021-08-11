@@ -4,7 +4,6 @@ import requests
 import logging
 import datetime
 from flask_sqlalchemy import SQLAlchemy
-from config import psql_password, psql_heroku
 
 app = Flask(__name__)
 
