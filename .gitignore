@@ -1,5 +1,4 @@
 .vscode
 __pycache__
 config.py
-piastrixlib.py
 flask_env
