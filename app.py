@@ -14,7 +14,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:shapik3311752@localhost/piastrix'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qrhzvjnmjqjozz:dc238ee21f24a841aee885d6d950699b045374884ae80ebcaac212325bbfa3a0@ec2-3-212-75-25.compute-1.amazonaws.com:5432/dek9sahj8u0suh'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vwpxdgmdgjorna:bc436a1fefea33beb30d24c64867346293cd50df62ddc2205d1aef13070d0c57@ec2-52-2-118-38.compute-1.amazonaws.com:5432/dbug5n8cqe14jv'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
