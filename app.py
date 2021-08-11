@@ -12,10 +12,10 @@ ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = psql_password
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:shapik3311752@localhost/piastrix'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = psql_heroku
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qrhzvjnmjqjozz:dc238ee21f24a841aee885d6d950699b045374884ae80ebcaac212325bbfa3a0@ec2-3-212-75-25.compute-1.amazonaws.com:5432/dek9sahj8u0suh'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
