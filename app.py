@@ -89,7 +89,7 @@ def index():
             return render_template("index.html", massage='You cant pay less than 1 RUB') 
         currency = '643'
         db_currency = 'RUB'
-        shop_order_id = '4239'
+        shop_order_id = '4126'
         payway = 'advcash_rub'
         extra_fields = {
             'description' : request.form.get('description')
@@ -98,8 +98,8 @@ def index():
             response = piastrix.invoice(amount, currency, shop_order_id, payway, extra_fields)
             print(response)
             app.logger.info("---\nRedirect to Piastrix servis.\nCurrency: RUB. Amount: {}\nTime: {}".format(amount, datetime.datetime.now()))
-            data = PayInfo(currency=db_currency, amount=amount,time=datetime.datetime.now() , description=extra_fields['description'])
-            db.session.add(data)
+            db_data = PayInfo(currency=db_currency, amount=amount,time=datetime.datetime.now(), description=extra_fields['description'])
+            db.session.add(db_data)
             db.session.commit()
             return render_template("rub.html", response=response)
         except:
