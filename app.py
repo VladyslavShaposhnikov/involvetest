@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, json, redirect
+from flask import Flask, render_template, request, redirect
 from piastrixlib import PiastrixClient
-import requests
 import logging
 import datetime
 from flask_sqlalchemy import SQLAlchemy
