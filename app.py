@@ -12,10 +12,12 @@ ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:shapik3311752@localhost/piastrix'
+    dev_db = os.environ["dev_db"]
+    app.config['SQLALCHEMY_DATABASE_URI'] = dev_db
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vwpxdgmdgjorna:bc436a1fefea33beb30d24c64867346293cd50df62ddc2205d1aef13070d0c57@ec2-52-2-118-38.compute-1.amazonaws.com:5432/dbug5n8cqe14jv'
+    prod_db = os.environ["prod_db"]
+    app.config['SQLALCHEMY_DATABASE_URI'] = prod_db
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
