@@ -1,7 +1,9 @@
+import datetime
+import os
+
 from flask import Flask, render_template, request, redirect
 from piastrixlib import PiastrixClient
 import logging
-import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -39,8 +41,8 @@ app.logger.setLevel(logging.DEBUG)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    secret_key = "SecretKey01"
-    shop_id = '5'
+    secret_key = os.environ["secret_key"]
+    shop_id = os.environ["shop_id"]
     piastrix = PiastrixClient(shop_id, secret_key)
     if request.method == "POST" and request.form.get('currency') == "978":
         amount = request.form.get('amount')
@@ -60,6 +62,7 @@ def index():
             return render_template("eur.html", response=response)
         except:
             app.logger.error("---\nSomething has gone very wrong.\nCurrency: EUR. Amount: {}\nTime: {}".format(amount ,datetime.datetime.now()))
+            return render_template("error.html")
     elif request.method == "POST" and request.form.get('currency') == "840":
         payer_currency = '840'
         db_currency = 'USD'
@@ -81,6 +84,7 @@ def index():
             return redirect(response['url'], code=302)
         except:
             app.logger.error("---\nSomething has gone very wrong.\nCurrency: USD. Amount: {}\nTime: {}".format(shop_amount, datetime.datetime.now()))
+            return render_template("error.html")
     elif request.method == "POST" and request.form.get('currency') == "643":
         amount = request.form.get('amount')
         if amount < '1':
@@ -103,6 +107,7 @@ def index():
             return render_template("rub.html", response=response)
         except:
             app.logger.error("---\nSomething has gone very wrong.\nCurrency: RUB. Amount: {}\nTime: {}".format(amount, datetime.datetime.now()))
+            return render_template("error.html")
     elif request.form.get('currency') == "0":
         app.logger.error("---\nField currency is empty.\nTime: {}".format(datetime.datetime.now()))
         return render_template("index.html", massage='Please choise currency') 
